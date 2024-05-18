@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../img/pedidos.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  </head>
+ <script defer src="../js/produtos.js"></script>  
+</head>
+<body>
+  <div>
+    <h2 class="text-2xl font-bold mb-2">Produtos</h2>
+    <button id="visualizar-produtos" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mb-2">
+        <i class="fas fa-eye"></i>
+    </button>
+    <table id="tabela-produtos" class="table-auto" style="display: none;">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">ID</th>
+                <th class="px-4 py-2">Nome</th>
+                <th class="px-4 py-2">Descrição</th>
+                <th class="px-4 py-2">Preço</th>
+                <th class="px-4 py-2">Categoria</th>
+                <th class="px-4 py-2">Estoque</th>
+                <th class="px-4 py-2">Ações</th>
+            </tr>
+        </thead>
+        <tbody id="produtos-tbody">
+            <!-- Rows serão adicionadas aqui dinamicamente -->
+        </tbody>
+    </table>
+    <form id="produto-form" class="mt-4">
+        <input id="nome" placeholder="Nome" class="border px-4 py-2 m-2" required>
+        <input id="descricao" placeholder="Descrição" class="border px-4 py-2 m-2" required>
+        <input id="preco" placeholder="Preço" class="border px-4 py-2 m-2" required>
+        <input id="categoria" placeholder="Categoria" class="border px-4 py-2 m-2" required>
+        <input id="estoque" placeholder="Estoque" class="border px-4 py-2 m-2" required>
+        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
+            <i class="fas fa-plus"></i>
+        </button>
+        <button type="button" id="cancelar-edicao" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded" style="display:none;">
+            Cancelar
+        </button>
+    </form>
+</div>
+</body>
+</html>

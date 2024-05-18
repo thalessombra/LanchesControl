@@ -1,0 +1,180 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+header {
+    position: fixed;
+    width: 160px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo com opacidade */
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/mountain.jpg') no-repeat center center;
+    background-size: cover;
+    opacity: 0.2; 
+    z-index: -1; 
+}
+
+.navbar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.navbar li {
+    margin: 10px 0;
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 5px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    
+}
+.container {
+    flex:1;   /* Subtrai a largura da barra lateral */
+
+    margin-left: 160px; /* Espaço para a barra lateral fixa */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa a altura total da viewport */
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse o container */
+   
+
+}
+
+.container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+h1 {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Garante que o formulário ocupe toda a largura do container */
+}
+
+label {
+    margin-bottom: 5px;
+    text-align: left; /* Alinha os labels à esquerda */
+    width: 100%;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Garante que os inputs ocupem toda a largura disponível */
+    box-sizing: border-box; /* Inclui padding e border no tamanho total */
+}
+
+button {
+    
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    margin-right: 8px;
+    cursor: pointer;
+    width: 100%; 
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    header {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Alinha o botão e a navbar nas extremidades */
+    }
+
+    .menu-toggle {
+        display: block;
+        position: relative;
+        align-self: flex-start; /* Alinha o botão à esquerda */
+      }
+        
+        .navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;    
+        align-items: center;   
+
+        position: relative;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .navbar li {
+        margin: 10px 0;
+    }
+
+    .navbar a {
+        color: black;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        padding: 5px;
+    }
+
+    .container {
+        width: 100%; /* Ocupa toda a largura no modo responsivo */
+        margin-left: 0;
+        height: auto; /* Remove a altura fixa no modo responsivo */
+       
+    }
+
+    .container img {
+        width: 100%;
+        height: auto;
+    }
+}
