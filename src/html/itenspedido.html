@@ -9,14 +9,13 @@
     <link rel="shortcut icon" href="../img/itens.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script defer src="../js/itenspedido.js"></script>
+    <link rel="stylesheet" href="../css/global.css">
 </head>
 <body>
   <div>
-    <h2 class="text-2xl font-bold mb-2">Itens do Pedido</h2>
-    <button id="visualizar-itens" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mb-2">
-        <i class="fas fa-eye"></i> 
-    </button>
-    <table id="tabela-itens" class="table-auto" style="display: none;">
+    <h2 class="text-2xl font-bold mb-2">Pedidos de Produtos</h2>
+    <div class="table-container">
+    <table class="table-auto">
         <thead>
             <tr>
                 <th class="px-4 py-2">ID Pedido</th>
@@ -26,16 +25,15 @@
                 <th class="px-4 py-2">Ações</th>
             </tr>
         </thead>
-        <tbody id="itens-tbody">
+        <tbody id="pedidos-tbody">
             <!-- Rows serão adicionadas aqui dinamicamente -->
         </tbody>
     </table>
-    <form id="item-form" class="mt-4">
-      <input id="id-pedido" placeholder="ID Pedido" class="border px-4 py-2 m-2" required>
-      <input id="id-produto" placeholder="ID Produto" class="border px-4 py-2 m-2" required>
-      <input id="quantidade" placeholder="Quantidade" class="border px-4 py-2 m-2" required>
-      <input id="preco" placeholder="Preço" class="border px-4 py-2 m-2" required>
-     
+  </div>
+    <form id="pedido-form" class="mt-4">
+        <input id="id_produto" placeholder="ID Produto" class="border px-4 py-2 m-2" required>
+        <input id="quantidade" placeholder="Quantidade" class="border px-4 py-2 m-2" required>
+        <input id="preco" placeholder="Preço" step="any" class="border px-4 py-2 m-2" required>
         <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
             <i class="fas fa-plus"></i>
         </button>
@@ -43,6 +41,6 @@
             Cancelar
         </button>
     </form>
-</div>
+  </div>
 </body>
 </html>

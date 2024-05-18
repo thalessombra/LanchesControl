@@ -1,83 +1,80 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let itensPedido = [];
+  let pedidos = [];
   let editando = false;
-  let itemEditando = null;
+  let pedidoEditando = null;
 
-  const form = document.getElementById('item-form');
-  const tbody = document.getElementById('itens-tbody');
-  const tabelaItens = document.getElementById('tabela-itens');
-  const visualizarBtn = document.getElementById('visualizar-itens');
+  const form = document.getElementById('pedido-form');
+  const tbody = document.getElementById('pedidos-tbody');
   const cancelarEdicaoBtn = document.getElementById('cancelar-edicao');
+
+  // Esconder o formulário ao carregar a página
+  form.style.display = 'none';
 
   // Dados de exemplo
   const dadosIniciais = [
-      { idPedido: 1, idProduto: 1, quantidade: 2, preco: 50 },
-      { idPedido: 1, idProduto: 2, quantidade: 1, preco: 30 }
+      { id_pedido: 1, id_produto: '101', quantidade: 2, preco: '30.00' },
+      { id_pedido: 2, id_produto: '102', quantidade: 1, preco: '45.00' }
   ];
 
   // Carregar dados iniciais
-  itensPedido = dadosIniciais;
+  pedidos = dadosIniciais;
   renderTabela();
 
   form.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      const idPedido = document.getElementById('id-pedido').value;
-      const idProduto = document.getElementById('id-produto').value;
+      const id_produto = document.getElementById('id_produto').value;
       const quantidade = document.getElementById('quantidade').value;
       const preco = document.getElementById('preco').value;
 
       if (editando) {
-          // Atualizar o item do pedido existente
-          itemEditando.idPedido = idPedido;
-          itemEditando.idProduto = idProduto;
-          itemEditando.quantidade = quantidade;
-          itemEditando.preco = preco;
+          // Atualizar o pedido existente
+          pedidoEditando.id_produto = id_produto;
+          pedidoEditando.quantidade = quantidade;
+          pedidoEditando.preco = preco;
 
           editando = false;
-          itemEditando = null;
+          pedidoEditando = null;
           cancelarEdicaoBtn.style.display = 'none';
       } else {
-          // Adicionar novo item do pedido
-          const novoItem = { idPedido, idProduto, quantidade, preco };
-          itensPedido.push(novoItem);
+          // Adicionar novo pedido
+          const novoIdPedido = pedidos.length ? pedidos[pedidos.length - 1].id_pedido + 1 : 1;
+          const novoPedido = { id_pedido: novoIdPedido, id_produto, quantidade, preco };
+          pedidos.push(novoPedido);
       }
 
       renderTabela();
       resetForm();
+      form.style.display = 'none'; // Esconder o formulário após adicionar ou atualizar um pedido
   });
 
   cancelarEdicaoBtn.addEventListener('click', function () {
       editando = false;
-      itemEditando = null;
+      pedidoEditando = null;
       cancelarEdicaoBtn.style.display = 'none';
       resetForm();
-  });
-
-  visualizarBtn.addEventListener('click', function () {
-      if (tabelaItens.style.display === 'none') {
-          tabelaItens.style.display = 'table';
-      } else {
-          tabelaItens.style.display = 'none';
-      }
+      form.style.display = 'none'; // Esconder o formulário ao cancelar a edição
   });
 
   function renderTabela() {
       tbody.innerHTML = '';
-      itensPedido.forEach(item => {
+      pedidos.forEach(pedido => {
           const tr = document.createElement('tr');
 
           tr.innerHTML = `
-              <td class="border px-4 py-2">${item.idPedido}</td>
-              <td class="border px-4 py-2">${item.idProduto}</td>
-              <td class="border px-4 py-2">${item.quantidade}</td>
-              <td class="border px-4 py-2">${item.preco}</td>
+              <td class="border px-4 py-2">${pedido.id_pedido}</td>
+              <td class="border px-4 py-2">${pedido.id_produto}</td>
+              <td class="border px-4 py-2">${pedido.quantidade}</td>
+              <td class="border px-4 py-2">${pedido.preco}</td>
               <td class="border px-4 py-2">
-                  <button onclick="editarItem(${item.idPedido}, ${item.idProduto})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mb-2">
+                  <button onclick="editarPedido(${pedido.id_pedido})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mb-2">
                       <i class="fas fa-pencil-alt"></i>
                   </button>
-                  <button onclick="deletarItem(${item.idPedido}, ${item.idProduto})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                  <button onclick="deletarPedido(${pedido.id_pedido})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
                       <i class="fas fa-times"></i>
+                  </button>
+                  <button onclick="adicionarPedido()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded ml-2">
+                      <i class="fas fa-plus"></i>
                   </button>
               </td>
           `;
@@ -86,24 +83,32 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
 
-  window.editarItem = function (idPedido, idProduto) {
-      const item = itensPedido.find(it => it.idPedido === idPedido && it.idProduto === idProduto);
-      document.getElementById('id-pedido').value = item.idPedido;
-      document.getElementById('id-produto').value = item.idProduto;
-      document.getElementById('quantidade').value = item.quantidade;
-      document.getElementById('preco').value = item.preco;
+  window.editarPedido = function (id_pedido) {
+      const pedido = pedidos.find(ped => ped.id_pedido === id_pedido);
+      document.getElementById('id_produto').value = pedido.id_produto;
+      document.getElementById('quantidade').value = pedido.quantidade;
+      document.getElementById('preco').value = pedido.preco;
 
       editando = true;
-      itemEditando = item;
+      pedidoEditando = pedido;
       cancelarEdicaoBtn.style.display = 'inline-block';
+      form.style.display = 'block'; // Exibir o formulário ao editar pedido
   };
 
-  window.deletarItem = function (idPedido, idProduto) {
-      itensPedido = itensPedido.filter(it => it.idPedido !== idPedido || it.idProduto !== idProduto);
+  window.deletarPedido = function (id_pedido) {
+      pedidos = pedidos.filter(ped => ped.id_pedido !== id_pedido);
       renderTabela();
-    };
+  };
 
-    function resetForm() {
-        form.reset();
-    }
+  window.adicionarPedido = function () {
+      editando = false;
+      pedidoEditando = null;
+      cancelarEdicaoBtn.style.display = 'none';
+      resetForm();
+      form.style.display = 'block'; // Exibir o formulário ao adicionar pedido
+  };
+
+  function resetForm() {
+      form.reset();
+  }
 });

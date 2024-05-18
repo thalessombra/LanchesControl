@@ -9,41 +9,40 @@
     <link rel="shortcut icon" href="../img/cart.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script defer src="../js/pedidos.js"></script>
+    <link rel="stylesheet" href="../css/global.css">
   
 </head>
 <body>
-  <div>
-    <h2 class="text-2xl font-bold mb-2">Pedidos</h2>
-    <button id="visualizar-pedidos" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mb-2">
-        <i class="fas fa-eye"></i> 
-    </button>
-    <table id="tabela-pedidos" class="table-auto" style="display: none;">
-        <thead>
-            <tr>
-                <th class="px-4 py-2">ID</th>
-                <th class="px-4 py-2">Cliente</th>
-                <th class="px-4 py-2">Data</th>
-                <th class="px-4 py-2">Total</th>
-                <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2">Ações</th>
-            </tr>
-        </thead>
-        <tbody id="pedidos-tbody">
-            <!-- Rows serão adicionadas aqui dinamicamente -->
-        </tbody>
-    </table>
-    <form id="pedido-form" class="mt-4">
-        <input id="cliente" placeholder="Cliente" class="border px-4 py-2 m-2" required>
-        <input id="data" type="date" class="border px-4 py-2 m-2" required>
-        <input id="total" placeholder="Total" class="border px-4 py-2 m-2" required>
-        <input id="status" placeholder="Status" class="border px-4 py-2 m-2" required>
-        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
-            <i class="fas fa-plus"></i>
-        </button>
-        <button type="button" id="cancelar-edicao" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded" style="display:none;">
-            Cancelar
-        </button>
-    </form>
-</div>
+    <div>
+        <h2 class="text-2xl font-bold mb-2">Pedidos</h2>
+        <table class="table-auto">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">ID</th>
+                    <th class="px-4 py-2">Cliente</th>
+                    <th class="px-4 py-2">Data</th>
+                    <th class="px-4 py-2">Total</th>
+                    <th class="px-4 py-2">Status</th>
+                    <th class="px-4 py-2">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="pedidos-tbody">
+                <!-- Rows serão adicionadas aqui dinamicamente -->
+            </tbody>
+        </table>
+        <form id="pedido-form" class="mt-4">
+            <input id="cliente" placeholder="Cliente" class="border px-4 py-2 m-2" required>
+            <input id="data" type="date" class="border px-4 py-2 m-2" required>
+            <input id="total" placeholder="Total" class="border px-4 py-2 m-2" required>
+            <input id="status" placeholder="Status" class="border px-4 py-2 m-2" required>
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
+                <i class="fas fa-plus"></i>
+            </button>
+            <button type="button" id="cancelar-edicao" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded" style="display:none;">
+                Cancelar
+            </button>
+        </form>
+      </div>
+    
 </body>
 </html>
